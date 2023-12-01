@@ -1,0 +1,13 @@
+.mainCropComponent{
+    position: fixed;
+    left: 50px;
+    top:20px;
+    width: 400px;
+    border: solid;
+}
+
+.flexContainerWithCenter{
+    display: flex;
+    justify-content: center;
+    margin: 7px;
+}

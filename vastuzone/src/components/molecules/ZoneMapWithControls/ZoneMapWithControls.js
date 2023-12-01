@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Select from 'react-select';
-import ZoneMap from "../ZoneMap/ZoneMap";
+import ZoneMap from "../../atom/ZoneMap/ZoneMap";
 import ZoneMapControlUtil from "./ZoneMapControlUtil";
 
 function ZoneMapWithControls(){

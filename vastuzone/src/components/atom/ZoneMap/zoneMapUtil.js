@@ -95,7 +95,6 @@ class ZoneUtil{
         console.log('drawing done at deg ',deg);
         canvasObj.save();
         canvasObj.rotate(ZoneUtil.degreesToRadians(deg));
-        //ZoneUtil.drawBasicDirectionLine(canvasObj,lineLength);
         ZoneUtil.drawBasicZone(canvasObj,lineLength,color);
         canvasObj.restore();
     }
