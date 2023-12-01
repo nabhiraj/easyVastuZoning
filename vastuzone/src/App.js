@@ -1,9 +1,12 @@
 import ZoneMapWithControls from "./components/molecules/ZoneMapWithControls/ZoneMapWithControls";
 import ImageUpload from "./components/atom/ImageUpload/ImageUpload";
+import { useState } from "react";
 function App() {
+  let [cropDone,setCropDone] = useState(false);
   return (
     <div className="App">
-        <ImageUpload></ImageUpload>
+        {!cropDone && <ImageUpload signalCropDone={()=>{setCropDone(true)}}></ImageUpload>}
+        {cropDone && <ZoneMapWithControls></ZoneMapWithControls>}
     </div>
   );
 }
@@ -14,3 +17,4 @@ export default App;
 <div>simeple text</div>
         <ZoneMapWithControls></ZoneMapWithControls>
 */
+//<ImageUpload></ImageUpload>

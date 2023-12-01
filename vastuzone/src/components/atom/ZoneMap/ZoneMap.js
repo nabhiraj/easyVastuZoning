@@ -1,12 +1,11 @@
 import { useRef,useEffect } from 'react';
 import pageStyle from './style.module.css'
 import graphUtil from './zoneMapUtil';
-function ZoneMap({zoneList=['N'],angleShift=50}){
+function ZoneMap({zoneList=['N'],angleShift=50,imageUrl=''}){
     let canvasRef = useRef();
     let canvasObj;
     //angleInRadians.toFixed(4);
     useEffect(()=>{
-        console.log('the value of angle shif is from inside ',angleShift);
         canvasObj=canvasRef.current.getContext('2d');
         let height = canvasRef.current.height;
         let width = canvasRef.current.width;

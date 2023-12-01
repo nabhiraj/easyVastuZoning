@@ -2,7 +2,6 @@
     position: fixed;
     left: 50px;
     top:20px;
-    width: 400px;
     border: solid;
 }
 
@@ -11,3 +10,17 @@
     justify-content: center;
     margin: 7px;
 }
+
+.horizontalFlexContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.imagePreviewContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 12px;
+    align-items: center;
+}
+
