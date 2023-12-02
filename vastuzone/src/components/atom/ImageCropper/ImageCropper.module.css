@@ -1,7 +1,4 @@
-.mainCropComponent{
-    position: fixed;
-    left: 50px;
-    top:20px;
+.mainCropComponent{ 
     border: solid;
 }
 

@@ -1,12 +1,9 @@
-import ZoneMapWithControls from "./components/molecules/ZoneMapWithControls/ZoneMapWithControls";
-import ImageUpload from "./components/atom/ImageUpload/ImageUpload";
-import { useState } from "react";
+import MainPage from "./pages/MainPage";
 function App() {
-  let [cropDone,setCropDone] = useState(false);
+  
   return (
     <div className="App">
-        {!cropDone && <ImageUpload signalCropDone={()=>{setCropDone(true)}}></ImageUpload>}
-        {cropDone && <ZoneMapWithControls></ZoneMapWithControls>}
+        <MainPage></MainPage>
     </div>
   );
 }
@@ -18,3 +15,9 @@ export default App;
         <ZoneMapWithControls></ZoneMapWithControls>
 */
 //<ImageUpload></ImageUpload>
+
+/**
+ * let [cropDone,setCropDone] = useState(false);
+ * {!cropDone && <ImageCropper signalCropDone={()=>{setCropDone(true)}}></ImageCropper>}
+        {cropDone && <ZoneMapWithControls></ZoneMapWithControls>}
+ */

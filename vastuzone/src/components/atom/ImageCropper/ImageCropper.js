@@ -54,6 +54,6 @@ function ImageCropper({imageLink="http://localhost:3000/jump.jpg",signalCropDone
                 </div>
             </div>
         
-    );
+        );
 }
 export default ImageCropper;
