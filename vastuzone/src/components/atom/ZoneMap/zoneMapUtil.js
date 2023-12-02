@@ -75,16 +75,19 @@ class ZoneUtil{
     }
 
     static drawBasicZone(canvasObj,lineLength,color){
-      canvasObj.globalAlpha = 0.07;
-      canvasObj.fillStyle = color;
       let theta = this.degreesToRadians(11.25);
+      canvasObj.strokeStyle = 'black';
+      canvasObj.lineWidth = 2;
+      canvasObj.fillStyle = color;
       canvasObj.beginPath();
       canvasObj.moveTo(0,0);
       canvasObj.lineTo(-1*lineLength*Math.sin(theta),lineLength*Math.cos(theta));
       canvasObj.lineTo(lineLength*Math.sin(theta),lineLength*Math.cos(theta));
       canvasObj.lineTo(0,0);
-      canvasObj.fill();
       canvasObj.closePath();
+      canvasObj.stroke();
+      canvasObj.globalAlpha = 0.07;
+      canvasObj.fill();
     }
     
     static degreesToRadians(degrees) {
@@ -103,6 +106,48 @@ class ZoneUtil{
         for(let i=0;i<zones.length;i++){
             ZoneUtil.drawZone(canvasObj,ZoneUtil.zoneDeg[zones[i]].degrees,lineLength,ZoneUtil.zoneDeg[zones[i]].color);
         }
+    }
+
+    static confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width){
+        canvasObj.save();
+        canvasObj.translate(width/2,height/2);
+        canvasObj.save();
+        canvasObj.rotate(ZoneUtil.degreesToRadians(angleShift));
+        canvasObj.save();
+        ZoneUtil.drawZones(canvasObj,zoneList,-1*(height+width));
+        canvasObj.restore();
+        canvasObj.restore();
+        canvasObj.restore();
+    }
+
+    static drawHomeMap(canvasObj,imageLink,angleShift,zoneList,height,width){
+      let temp = new Image();
+      temp.onload = ()=>{
+        let imageHeight = temp.height;
+        let imageWidth = temp.width;
+        //aspect ration = width/height
+        let aspectRatio = imageWidth/imageHeight;
+        let canvasImageWidth;
+        let canvasImageHeight;
+        let canvas_x=0;
+        let canvas_y=0;
+        if(imageHeight>imageWidth){
+          canvasImageHeight = canvasObj.canvas.height;
+          canvasImageWidth = aspectRatio*canvasImageHeight;
+          let totalCanvasWidth = canvasObj.canvas.width;
+          canvas_x = parseInt((totalCanvasWidth - canvasImageWidth)/2);
+        }else{
+          canvasImageWidth = canvasObj.canvas.width;
+          canvasImageHeight = canvasImageWidth/aspectRatio;
+          let totalCanvasHeight = canvasObj.canvas.height;
+          canvas_y = parseInt((totalCanvasHeight - canvasImageHeight)/2);
+        }
+        console.log('the image properties are ',temp);
+        canvasObj.drawImage(temp,canvas_x,canvas_y,canvasImageWidth,canvasImageHeight);
+        ZoneUtil.confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width);
+      };
+      temp.src = imageLink;
+      console.log('end of code');
     }
 
     
