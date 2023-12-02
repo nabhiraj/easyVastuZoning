@@ -1,10 +1,10 @@
 import Cropper from "react-cropper";
 import "cropperjs/dist/cropper.css";
-import pageStyle from './ImageUpload.module.css'
+import pageStyle from './ImageCropper.module.css'
 import { useRef, useState } from "react";
 import { useSelector,useDispatch} from "react-redux";
 import {putImage,removeImage} from '../../../reduxState/cropedImageState';
-function ImageUpload({imageLink="http://localhost:3000/jump.jpg",signalCropDone=()=>{}}) {
+function ImageCropper({imageLink="http://localhost:3000/jump.jpg",signalCropDone=()=>{}}) {
     let cropRef = useRef();
     let [cropedImage,setCropedImage] = useState();
     let dispatch = useDispatch();
@@ -56,4 +56,4 @@ function ImageUpload({imageLink="http://localhost:3000/jump.jpg",signalCropDone=
         
     );
 }
-export default ImageUpload;
+export default ImageCropper;
