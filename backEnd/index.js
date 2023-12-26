@@ -9,7 +9,6 @@ app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.get('/getToken',(req,res)=>{
-    console.log('sending the token');
     res.json({'tokenValue':'yetrh2ndk*&$teg'});
 });
 

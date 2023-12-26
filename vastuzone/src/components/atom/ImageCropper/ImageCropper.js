@@ -89,30 +89,3 @@ function ImageCropper({ imageLink, signalCropDone = () => { } }) {
   );
 }
 export default ImageCropper;
-
-
-/** (i will use this tomm)
- * 
- * const getImageSize = (imageUrl) => {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => {
-      resolve({ width: img.width, height: img.height });
-    };
-    img.onerror = (error) => {
-      reject(error);
-    };
-    img.src = imageUrl;
-  });
-};
-
-// Usage:
-const imageUrl = 'https://example.com/image.jpg'; // Replace with your image URL
-getImageSize(imageUrl)
-  .then(({ width, height }) => {
-    console.log(`Image width: ${width}, height: ${height}`);
-  })
-  .catch((error) => {
-    console.error('Error loading image:', error);
-  });
- */

@@ -2,67 +2,67 @@ class ZoneUtil{
     static zoneDeg = {
       "N": {
         "degrees": 0,
-        "color": "#008000"
+        "color": "#5d7eba"
       },
       "ENN": {
         "degrees": 22.5,
-        "color": 'red'
+        "color": '#5d7eba'
       },
       "EN": {
         "degrees": 45,
-        "color": "#FFFFFF"
+        "color": "#52c45a"
       },
       "EEN": {
         "degrees": 67.5,
-        "color": "#FFFFFF"
+        "color": "#52c45a"
       },
       "E": {
         "degrees": 90,
-        "color": "#FFFFFF"
+        "color": "#52c45a"
       },
       "EES": {
         "degrees": 112.5,
-        "color": "#FFA500"
+        "color": "#52c45a"
       },
       "ES": {
         "degrees": 135,
-        "color": "#FF0000"
+        "color": "#d11117"
       },
       "ESS": {
         "degrees": 157.5,
-        "color": "#FF0000"
+        "color": "#d11117"
       },
       "S": {
         "degrees": 180,
-        "color": "#FF0000"
+        "color": "#d11117"
       },
       "SSW": {
         "degrees": 202.5,
-        "color": "#8B4513"
+        "color": "#d1b111"
       },
       "SW": {
         "degrees": 225,
-        "color": "#8B4513"
+        "color": "#d1b111"
       },
       "SWW": {
         "degrees": 247.5,
-        "color": "#8B4513"
+        "color": "#d1b111"
       },
       "W": {
         "degrees": 270,
-        "color": "#0000FF"
+        "color": "#f0ebd1"
       },
       "NWW": {
         "degrees": 292.5,
-        "color": "#FFFFFF"
+        "color": "#f0ebd1"
       },
       "NW": {
         "degrees": 315,
-        "color": "#FFFFFF"
+        "color": "#f0ebd1"
       },
       "NNW": {
         "degrees": 337.5,
-        "color": "#F0FFFF"
+        "color": "#f0ebd1"
       }
     };
     
@@ -74,7 +74,7 @@ class ZoneUtil{
         canvasObj.closePath();
     }
 
-    static drawBasicZone(canvasObj,lineLength,color){
+    static drawBasicZone(canvasObj,lineLength,color,opacity){
       let theta = this.degreesToRadians(11.25);
       canvasObj.strokeStyle = 'black';
       canvasObj.lineWidth = 2;
@@ -86,41 +86,50 @@ class ZoneUtil{
       canvasObj.lineTo(0,0);
       canvasObj.closePath();
       canvasObj.stroke();
-      canvasObj.globalAlpha = 0.07;
+      canvasObj.globalAlpha = opacity;
       canvasObj.fill();
+      //now we have to write the text also
     }
     
     static degreesToRadians(degrees) {
         return degrees * (Math.PI / 180);
     }
     
-    static drawZone(canvasObj,deg,lineLength,color){
-        console.log('drawing done at deg ',deg);
+    static drawZone(canvasObj,deg,lineLength,color,opacity,zoneName,showZoneLabel){
         canvasObj.save();
         canvasObj.rotate(ZoneUtil.degreesToRadians(deg));
-        ZoneUtil.drawBasicZone(canvasObj,lineLength,color);
+        ZoneUtil.drawBasicZone(canvasObj,lineLength,color,opacity);
         canvasObj.restore();
-    }
-
-    static drawZones(canvasObj,zones,lineLength){
-        for(let i=0;i<zones.length;i++){
-            ZoneUtil.drawZone(canvasObj,ZoneUtil.zoneDeg[zones[i]].degrees,lineLength,ZoneUtil.zoneDeg[zones[i]].color);
+        if(showZoneLabel){
+          canvasObj.save();
+          canvasObj.rotate(ZoneUtil.degreesToRadians(deg));
+          canvasObj.strokeStyle = 'black';
+          canvasObj.globalAlpha = 1;
+          canvasObj.strokeText(zoneName,0,-200);
+          canvasObj.font = "30px";
+          canvasObj.restore();
         }
     }
 
-    static confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width){
+    static drawZones(canvasObj,zones,lineLength,opacity,showZoneLabel){
+        for(let i=0;i<zones.length;i++){
+            ZoneUtil.drawZone(canvasObj,ZoneUtil.zoneDeg[zones[i]].degrees,lineLength,ZoneUtil.zoneDeg[zones[i]].color,opacity,zones[i],showZoneLabel);
+        }
+    }
+
+    static confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width,opacity,showZoneLabel){
         canvasObj.save();
         canvasObj.translate(width/2,height/2);
         canvasObj.save();
         canvasObj.rotate(ZoneUtil.degreesToRadians(angleShift));
         canvasObj.save();
-        ZoneUtil.drawZones(canvasObj,zoneList,-1*(height+width));
+        ZoneUtil.drawZones(canvasObj,zoneList,-1*(height+width),opacity,showZoneLabel);
         canvasObj.restore();
         canvasObj.restore();
         canvasObj.restore();
     }
 
-    static drawHomeMap(canvasObj,imageLink,angleShift,zoneList,height,width){
+    static drawHomeMap(canvasObj,imageLink,angleShift,zoneList,height,width,opacity,showZoneLabel){
       let temp = new Image();
       temp.onload = ()=>{
         let imageHeight = temp.height;
@@ -142,12 +151,10 @@ class ZoneUtil{
           let totalCanvasHeight = canvasObj.canvas.height;
           canvas_y = parseInt((totalCanvasHeight - canvasImageHeight)/2);
         }
-        console.log('the image properties are ',temp);
         canvasObj.drawImage(temp,canvas_x,canvas_y,canvasImageWidth,canvasImageHeight);
-        ZoneUtil.confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width);
+        ZoneUtil.confugreAndDrawZones(canvasObj,angleShift,zoneList,height,width,opacity,showZoneLabel);
       };
       temp.src = imageLink;
-      console.log('end of code');
     }
 
     

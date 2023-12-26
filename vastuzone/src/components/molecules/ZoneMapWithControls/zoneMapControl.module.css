@@ -1,0 +1,15 @@
+
+.horizontalFlex{
+    display: flex;
+    flex-direction: row;
+}
+
+.verticalFlex{
+    display: flex;
+    flex-direction: column;
+}
+
+.controlOptions{
+    margin: 5px;
+}
+
