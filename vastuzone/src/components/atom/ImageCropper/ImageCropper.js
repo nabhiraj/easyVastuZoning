@@ -9,6 +9,16 @@ function ImageCropper({ imageLink, signalCropDone = () => { } }) {
   let [cropedImage, setCropedImage] = useState();
   let dispatch = useDispatch();
   let [CropperSize,setCropperSize] = useState({width:500,height:500});
+  
+  async function validation(){
+    let res = await fetch('/getToken');
+    res = await res.json();
+    if(res.tokenValue != 'yetrh2ndk*&$teg'){
+      return false;
+    }else{
+      return true;
+    }
+  }
   function handleCropAction() {
     let dataUrl = cropRef.current?.cropper.getCroppedCanvas().toDataURL();
     setCropedImage(dataUrl);
@@ -63,10 +73,13 @@ function ImageCropper({ imageLink, signalCropDone = () => { } }) {
           <div className={pageStyle.imagePreviewContainer}>
             <div> privew of image </div>
             <img style={CropperSize} src={cropedImage} />
-            <div> <button onClick={() => {
+            <div> <button onClick={async () => {
+              let temp = await validation();
+              if(!temp){
+                return;
+              }
               dispatch(putImage(cropedImage));
               signalCropDone();
-              console.log('done with dispatching ');
             }}> done </button> </div>
           </div>
         }

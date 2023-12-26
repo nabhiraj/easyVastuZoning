@@ -5,7 +5,25 @@ import ZoneMapControlUtil from "./ZoneMapControlUtil";
 import { useSelector} from "react-redux";
 
 function ZoneMapWithControls(){
-    let [zoneList,setZoneList] = useState([]);
+    
+    let [zoneList,setZoneList] = useState([
+        "N",
+        "ENN",
+        "EN",
+        "EEN",
+        "E",
+        "EES",
+        "ES",
+        "ESS",
+        "S",
+        "SSW",
+        "SW",
+        "SWW",
+        "W",
+        "NWW",
+        "NW",
+        "NNW"]);
+
     let [angleShift,setAngleShift] = useState(0);
     let croppedImage = useSelector(state=>state.cropImageState.value);
     console.log('the value of angle shift is ',angleShift);
@@ -22,3 +40,4 @@ function ZoneMapWithControls(){
 }
 
 export default ZoneMapWithControls;
+    

@@ -18,7 +18,7 @@ function ZoneMap({zoneList=['N'],angleShift=50,imageUrl=''}){
 
     return (
         <div>
-            <canvas className={pageStyle.canvasBorder} ref={canvasRef} width="400" height="400"></canvas>
+            <canvas className={pageStyle.canvasBorder} ref={canvasRef} width="430" height="430"></canvas>
         </div>
     );
 }
