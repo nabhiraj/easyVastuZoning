@@ -8,15 +8,15 @@ function MainPage(){
     let [imageSelected,setImageSelected] = useState(false);
     let [imageCropped,setImageCropped] = useState(false);
     let selectedImage = useSelector(state=>state.imageState.value);
-    //get the right image which is selected from the redux thing.
     return (
-        <div>
+        <div style={{marginLeft:'12px'}}>
+            <h2> Easy vastu zonning </h2>
             <MapFilePicker signalImageSelected={()=>{
                 setImageSelected(true);
                 setImageCropped(false);
                 }}></MapFilePicker>
             {imageSelected && !imageCropped && <ImageCropper imageLink={selectedImage} signalCropDone={()=>{ setImageCropped(true); }}></ImageCropper>}
-            {(imageCropped && imageSelected) && <ZoneMapWithControls></ZoneMapWithControls> }
+            { (imageCropped && imageSelected) && <ZoneMapWithControls></ZoneMapWithControls> }
         </div>
     );
 }

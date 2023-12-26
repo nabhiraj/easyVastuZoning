@@ -9,11 +9,17 @@ function MapFilePicker({signalImageSelected=()=>{}}){
     
     function readSelectedFileIntoImageState(event){
         let reader = new FileReader();
-        console.log('the event is ',event);
+        if(event.target.files && event.target.files.length == 0 ){
+            console.log('no file is selected');
+            return;
+        }
         reader.readAsDataURL(event.target.files[0]);
         reader.onload = ()=>{
             dispatch(putImage(reader.result));
             signalImageSelected();
+        }
+        reader.onerror = ()=>{
+            console.log('error occured while reading ');
         }
     }
 

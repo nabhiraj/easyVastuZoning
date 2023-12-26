@@ -8,6 +8,7 @@ function App() {
   );
 }
 export default App;
+
 //<ZoneMap zoneList={['N']} angleShift={288}></ZoneMap>
 
 /**

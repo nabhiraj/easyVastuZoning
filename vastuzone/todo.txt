@@ -1,0 +1,10 @@
+we will need to fix the css of imageCroppe.
+    things should not go totally out of the screen.
+        this can be fixed by doing some calculation according to the aspect ratio of the image.
+        we need to setup the size of the imae cropper part the image preview part.
+        if we will fix the size of th image cropper the size issue of the image privewer will automatically get fixed.
+        (this kind of issue is already taken care in zoneMapper)
+
+need to add a backend relay part of this so that people does not simply copy the code.
+
+setting up the image on the vastu zonner will be the right place to wait for the backend call.

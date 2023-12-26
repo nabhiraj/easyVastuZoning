@@ -13,6 +13,11 @@
     flex-direction: row;
 }
 
+.verticalFlexContainer{
+    display: flex;
+    flex-direction: column;
+}
+
 .imagePreviewContainer{
     display: flex;
     flex-direction: column;
@@ -20,4 +25,3 @@
     margin: 12px;
     align-items: center;
 }
-
