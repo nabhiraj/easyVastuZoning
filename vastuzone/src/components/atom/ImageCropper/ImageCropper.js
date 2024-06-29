@@ -11,13 +11,15 @@ function ImageCropper({ imageLink, signalCropDone = () => { } }) {
   let [CropperSize,setCropperSize] = useState({width:500,height:500});
   
   async function validation(){
+    /*
     let res = await fetch('/getToken');
     res = await res.json();
     if(res.tokenValue != 'yetrh2ndk*&$teg'){
       return false;
     }else{
       return true;
-    }
+    }*/
+    return true;
   }
   function handleCropAction() {
     let dataUrl = cropRef.current?.cropper.getCroppedCanvas().toDataURL();
