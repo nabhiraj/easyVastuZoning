@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/easyVastuZoning/static/css/main.5af782c6.css",
+    "main.js": "/easyVastuZoning/static/js/main.1c417a01.js",
+    "static/js/787.c025ea40.chunk.js": "/easyVastuZoning/static/js/787.c025ea40.chunk.js",
+    "index.html": "/easyVastuZoning/index.html",
+    "main.5af782c6.css.map": "/easyVastuZoning/static/css/main.5af782c6.css.map",
+    "main.1c417a01.js.map": "/easyVastuZoning/static/js/main.1c417a01.js.map",
+    "787.c025ea40.chunk.js.map": "/easyVastuZoning/static/js/787.c025ea40.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5af782c6.css",
+    "static/js/main.1c417a01.js"
+  ]
+}
